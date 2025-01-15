@@ -240,4 +240,8 @@ def program():
     else:
         print("Invalid option.")
 
-program()
+while True:
+    program()
+    start_again = input("Do you want to use the calculator again? (y/n) case sensitive: ")
+    if start_again != 'y':
+        break
