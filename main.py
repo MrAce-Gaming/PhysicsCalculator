@@ -9,11 +9,17 @@ def main_menu():
     print("5. Coulomb's Law")
     print("6. Ohm's Law")
     print("7. Magnetic Force")
+    print("8. Momentum")
+    print("9. Work")
+    print("10. Kinetic Energy")
+    print("11. Potential Energy")
+    print("12. Power")
+    print("13. Gravitational Force")
     
     while True:
         try:
-            choice = int(input("Enter your choice (1-7): "))
-            if 1 <= choice <= 7:
+            choice = int(input("Enter your choice (1-13): "))
+            if 1 <= choice <= 13:
                 return choice  # Returning the selected option
             else:
                 print("Invalid option. Please enter a number between 1 and 7.")
@@ -220,6 +226,133 @@ def MAGNETIC_FORCE():
     else:
         print("Invalid option, can only solve for the following 4.")
 
+def MOMENTUM():
+    solve_for = int(input("Solve for:\n1. Momentum\n2. Mass\n3. Velocity\n"))
+    if solve_for == 1:
+        mass = take("Enter the mass in (kg): ")
+        velocity = take("Enter the velocity in (m/s): ")
+        momentum = mass * velocity
+        print(f"The momentum is: {momentum}kgm/s")
+    elif solve_for == 2:
+        momentum = take("Enter the momentum in (kgm/s): ")
+        velocity = take("Enter the velocity in (m/s): ")
+        mass = momentum/velocity
+        print(f"The mass is: {mass}kg")
+    elif solve_for == 3:
+        mass = take("Enter the mass in (kg): ")
+        momentum = take("Enter the momentum in (kgm/s): ")
+        velocity = momentum/mass
+        print(f"The velocity is: {velocity}m/s")
+    else: 
+        print("Invalid option, can only solve for the following 3.")
+
+def WORK():
+    solve_for = int(input("Solve for:\n1. Work\n2. Force\n3. Displacement\n"))
+    if solve_for == 1:
+        force = take("Enter the force in (N): ")
+        displacement = take("Enter the displacement in (m): ")
+        angle = math.radians(take("Enter the angle between the force and displacement: "))
+        work = force * displacement * math.cos(angle)
+        print(f"The work done is: {work}J")
+    elif solve_for == 2:
+        displacement = take("Enter the displacement in (m): ")
+        angle = math.radians(take("Enter the angle between the force and displacement: "))
+        work = take("Enter the work done in (J): ")
+        force = work/(displacement * math.cos(angle))
+        print(f"The force done is: {force}N")
+    elif solve_for == 3:
+        force = take("Enter the force in (N): ")
+        angle = math.radians(take("Enter the angle between the force and displacement: "))
+        work = take("Enter the work done in (J): ")
+        displacement = work/(force * math.cos(angle))
+        print(f"The displacement is: {displacement}m")
+    else:
+        print("Invalid option, can only solve for the following 3.")
+
+def KINETIC_ENERGY():
+    solve_for = int(input("Solve for:\n1. Kinetic energy\n2. Mass\n3. Velocity"))
+    if solve_for == 1:
+        mass = take("Enter the mass in (kg): ")
+        velocity = take("Enter the velocity in (m/s): ")
+        kinetic_energy = 0.5 * mass * (velocity**2)
+        print(f"The kinetic energy is: {kinetic_energy}J")
+    elif solve_for == 2:
+        velocity = take("Enter the velocity in (m/s): ")
+        kinetic_energy = take("Enter the kinetic energy in (J): ")
+        mass = (2 * kinetic_energy)/(velocity**2)
+        print(f"The mass is: {mass}kg")
+    elif solve_for == 3:
+        mass = take("Enter the mass in (kg): ")
+        kinetic_energy = take("Enter the kinetic energy in (J): ")
+        velocity = math.sqrt((2 * kinetic_energy)/mass)
+        print(f"The velocity is: {velocity}m/s")
+    else:
+        print("Invalid option, can only solve for the following 3")
+
+def POTENTIAL_ENERGY():
+    ACCELERATION_BY_G = 9.8
+    solve_for = int(input("Solve for:\n1. Potential energy\n2. Mass\n3. Height(Vertical displacement)\n"))
+    if solve_for == 1:
+        mass = take("Enter the mass in (kg): ")
+        displacement = take("Enter the height from the ground level in (m): ")
+        potential_energy = mass * ACCELERATION_BY_G * displacement
+        print(f"The potential energy is: {potential_energy}J")
+    elif solve_for == 2:
+        potential_energy = take("Enter the potential energy in (J): ")
+        displacement = take("Enter the height from the ground level in (m): ")
+        mass = potential_energy/(ACCELERATION_BY_G * displacement)
+        print(f"The mass is: {mass}kg")
+    elif solve_for == 3:
+        potential_energy = take("Enter the potential energy in (J): ")
+        mass = take("Enter the mass in (kg): ")
+        displacement = potential_energy/(mass * ACCELERATION_BY_G)
+        print(f"The height from the ground level is: {displacement}m")
+    else:
+        print("Invalid option, can only solve for the following 3.")
+
+def POWER():
+    solve_for = int(input("Solve for:\n1. Power\n2. Work\n3. Time\n"))
+    if solve_for == 1:
+        work = take("Enter the work done in (J): ")
+        time = take("Enter the time taken in (s): ")
+        power = work/time
+        print(f"The power is: {power}W")
+    elif solve_for == 2:
+        time = take("Enter the time taken in (s): ")
+        power = take("Enter the power in (W): ")
+        work = power * time
+        print(f"The work done is: {work}J")
+    elif solve_for == 3:
+        work = take("Enter the work done in (J): ")
+        power = take("Enter the power in (W): ")
+        time = work/power
+        print(f"The time taken is: {time}s")
+    else:
+        print("Invalid option, can only solve for the following 3.")
+
+def GRAVITATIONAL_FORCE():
+    GRAVITATIONAL_CONSTANT = 6.67 * 10**-11
+    solve_for = int(input("Solve for:\n1. Gravitational Force\n2. Solve for missing mass (if one is known)\n3.Distance between the objects\n"))
+    if solve_for == 1:
+        massA = take("Enter the mass of the first object in (kg): ")
+        massB = take("Enter the mass of the second object in (kg): ")
+        distance = take("Enter the distance between the objects in (m): ")
+        gravitational_force = (GRAVITATIONAL_CONSTANT * massA * massB)/(distance**2)
+        print(f"The gravitational force is: {gravitational_force}N")
+    elif solve_for == 2:
+        distance = take("Enter the distance between the objects in (m): ")
+        massA = take("Enter the mass of either object in (kg): ")
+        gravitational_force = take("Enter the gravitational force in (N): ")
+        massB = (gravitational_force * (distance**2))/(GRAVITATIONAL_CONSTANT * massA)
+        print(f"The mass of the other object is: {massB}kg")
+    elif solve_for == 3:
+        massA = take("Enter the mass of the first object in (kg): ")
+        massB = take("Enter the mass of the second object in (kg): ")
+        gravitational_force = take("Enter the gravitational force in (N): ")
+        distance = math.sqrt((GRAVITATIONAL_CONSTANT * massA * massB)/gravitational_force)
+        print(f"The distance between the objects is: {distance}m")
+    else:
+        print("Invalid option, can only solve for the following 3.")
 
 def program():
     CHOICE = main_menu()    
@@ -237,6 +370,18 @@ def program():
         OHM_LAW()
     elif CHOICE == 7:
         MAGNETIC_FORCE()
+    elif CHOICE == 8:
+        MOMENTUM()
+    elif CHOICE == 9:
+        WORK()
+    elif CHOICE == 10:
+        KINETIC_ENERGY()
+    elif CHOICE == 11:
+        POTENTIAL_ENERGY()
+    elif CHOICE == 12:
+        POWER()
+    elif CHOICE == 13:
+        GRAVITATIONAL_FORCE()
     else:
         print("Invalid option.")
 
